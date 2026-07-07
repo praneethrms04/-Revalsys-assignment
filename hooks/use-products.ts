@@ -14,11 +14,12 @@ export function useProducts() {
   });
 }
 
-export function useProduct(id: number) {
+export function useProduct(id: number, initialData?: Product) {
   return useQuery<Product>({
     queryKey: productKeys.detail(id),
     queryFn: () => getProductById(id),
     enabled: Boolean(id),
+    initialData: initialData ? () => initialData : undefined,
   });
 }
 
