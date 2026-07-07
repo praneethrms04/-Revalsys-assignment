@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShoppingCart, User, Menu, Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import {
   Sheet,
   SheetTrigger,
@@ -83,10 +84,13 @@ export function Navbar() {
 
           <div className="md:hidden">
             <Sheet>
-              <SheetTrigger>
-                <Button variant="ghost" size="icon" aria-label="Open menu">
-                  <Menu className="size-5" />
-                </Button>
+              <SheetTrigger
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" })
+                )}
+                aria-label="Open menu"
+              >
+                <Menu className="size-5" />
               </SheetTrigger>
               <SheetContent side="right">
                 <SheetHeader>
