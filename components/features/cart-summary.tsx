@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
+import { useShallow } from "zustand/react/shallow";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useCartStore } from "@/stores/cart-store";
@@ -12,10 +13,12 @@ const FREE_SHIPPING_THRESHOLD = 100;
 const SHIPPING_COST = 9.99;
 
 export function CartSummary() {
-  const { totalItems, subtotal } = useCartStore((state) => ({
-    totalItems: state.items.reduce((sum, item) => sum + item.quantity, 0),
-    subtotal: state.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
-  }));
+  const { totalItems, subtotal } = useCartStore(
+    useShallow((state) => ({
+      totalItems: state.items.reduce((sum, item) => sum + item.quantity, 0),
+      subtotal: state.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
+    }))
+  );
 
   const { shipping, tax, total } = useMemo(() => {
     const shipping = subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0 ? 0 : SHIPPING_COST;

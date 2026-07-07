@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -119,12 +119,10 @@ export function ProductDetails({ productId, initialProduct }: ProductDetailsProp
 
   const specs = useMemo(() => getSpecs(product.category, product.id), [product.category, product.id]);
 
-  function handleAddToCart() {
+  const handleAddToCart = useCallback(() => {
     if (!product) return;
-    for (let i = 0; i < quantity; i++) {
-      addItem(product);
-    }
-  }
+    addItem(product, quantity);
+  }, [product, quantity, addItem]);
 
   return (
     <div className="py-8 sm:py-12">

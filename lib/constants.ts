@@ -2,7 +2,7 @@ export const SITE = {
   name: "Voltura",
   tagline: "Power meets precision",
   description: "Discover premium electronics at Voltura.",
-  url: "https://voltura.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 } as const;
 
 export const ROUTES = {
@@ -30,7 +30,7 @@ export const categoryKeys = {
 };
 
 export const API = {
-  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://fakestoreapi.com",
   endpoints: {
     products: "/products",
     categories: "/products/categories",

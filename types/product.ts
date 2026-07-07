@@ -18,8 +18,3 @@ export type ProductCategory =
   | "jewelery"
   | "men's clothing"
   | "women's clothing";
-
-export interface ProductFilters {
-  search: string;
-  category: ProductCategory | "";
-}

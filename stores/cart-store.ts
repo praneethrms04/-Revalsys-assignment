@@ -5,7 +5,7 @@ import { STORAGE_KEYS } from "@/lib/constants";
 
 interface CartState {
   items: CartItem[];
-  addItem: (product: Product) => void;
+  addItem: (product: Product, quantity?: number) => void;
   removeItem: (productId: number) => void;
   updateQuantity: (productId: number, quantity: number) => void;
   clearCart: () => void;
@@ -16,7 +16,7 @@ export const useCartStore = create<CartState>()(
     (set) => ({
       items: [],
 
-      addItem: (product) =>
+      addItem: (product, quantity = 1) =>
         set((state) => {
           const existing = state.items.find(
             (item) => item.product.id === product.id
@@ -25,12 +25,12 @@ export const useCartStore = create<CartState>()(
             return {
               items: state.items.map((item) =>
                 item.product.id === product.id
-                  ? { ...item, quantity: item.quantity + 1 }
+                  ? { ...item, quantity: item.quantity + quantity }
                   : item
               ),
             };
           }
-          return { items: [...state.items, { product, quantity: 1 }] };
+          return { items: [...state.items, { product, quantity }] };
         }),
 
       removeItem: (productId) =>
