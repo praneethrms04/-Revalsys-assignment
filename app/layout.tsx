@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/providers/query-provider";
 import { Toaster } from "sonner";
+import { SITE } from "@/lib/constants";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -11,10 +12,28 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Voltura — Premium Electronics",
-  description:
-    "Discover premium electronics at Voltura. Power meets precision in every product.",
+  title: {
+    default: `${SITE.name} — ${SITE.tagline}`,
+    template: `%s | ${SITE.name}`,
+  },
+  description: SITE.description,
   icons: { icon: "/icon.svg" },
+  openGraph: {
+    title: `${SITE.name} — ${SITE.tagline}`,
+    description: SITE.description,
+    siteName: SITE.name,
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE.name} — ${SITE.tagline}`,
+    description: SITE.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -23,11 +42,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col">
         <QueryProvider>
           {children}
           <Toaster
