@@ -27,7 +27,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-2xl supports-backdrop-filter:bg-background/60">
-      <nav className="mx-auto flex h-14 max-w-[1280px] items-center justify-between px-4 sm:px-6">
+      <nav aria-label="Main navigation" className="mx-auto flex h-14 max-w-[1280px] items-center justify-between px-4 sm:px-6">
         <Link
           href={ROUTES.home}
           className="text-lg font-semibold tracking-tight transition-opacity hover:opacity-80"
@@ -40,6 +40,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={isActive(link.href) ? "page" : undefined}
               className={`
                 relative text-sm transition-colors
                 ${isActive(link.href)
@@ -101,6 +102,7 @@ export function Navbar() {
                     <Link
                       key={link.href}
                       href={link.href}
+                      aria-current={isActive(link.href) ? "page" : undefined}
                       className={`text-base font-medium transition-colors ${
                         isActive(link.href)
                           ? "text-foreground"

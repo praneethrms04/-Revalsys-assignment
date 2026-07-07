@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { useProductsByCategory } from "@/hooks/use-products";
 import { ProductGrid, ProductGridSkeleton } from "@/components/shared/product-grid";
 
@@ -8,7 +9,7 @@ interface RelatedProductsProps {
   currentProductId: number;
 }
 
-export function RelatedProducts({
+export const RelatedProducts = memo(function RelatedProducts({
   category,
   currentProductId,
 }: RelatedProductsProps) {
@@ -29,4 +30,4 @@ export function RelatedProducts({
   if (related.length === 0) return null;
 
   return <ProductGrid products={related} />;
-}
+});

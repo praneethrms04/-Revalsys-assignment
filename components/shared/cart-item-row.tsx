@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
@@ -14,7 +15,7 @@ interface CartItemRowProps {
   item: CartItem;
 }
 
-export function CartItemRow({ item }: CartItemRowProps) {
+export const CartItemRow = memo(function CartItemRow({ item }: CartItemRowProps) {
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const removeItem = useCartStore((state) => state.removeItem);
 
@@ -68,4 +69,4 @@ export function CartItemRow({ item }: CartItemRowProps) {
       </div>
     </div>
   );
-}
+});

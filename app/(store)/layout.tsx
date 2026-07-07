@@ -6,7 +6,7 @@ export default function StoreLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Navbar />
-      <main className="flex-1">{children}</main>
+      <main id="main-content" className="flex-1">{children}</main>
       <Footer />
     </>
   );

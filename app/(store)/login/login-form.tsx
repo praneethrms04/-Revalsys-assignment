@@ -150,6 +150,7 @@ export function LoginForm() {
             <button
               type="button"
               className="text-sm text-accent hover:underline"
+              aria-label="Forgot password"
               onClick={() => {}}
             >
               Forgot password?
@@ -189,6 +190,7 @@ export function LoginForm() {
           <button
             type="button"
             className="text-accent hover:underline"
+            aria-label="Create an account"
             onClick={() => {}}
           >
             Sign up

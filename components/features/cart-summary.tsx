@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -13,9 +14,12 @@ export function CartSummary() {
   const totalItems = useCartStore(selectCartCount);
   const subtotal = useCartStore(selectCartSubtotal);
 
-  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0 ? 0 : SHIPPING_COST;
-  const tax = subtotal * TAX_RATE;
-  const total = subtotal + shipping + tax;
+  const { shipping, tax, total } = useMemo(() => {
+    const shipping = subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0 ? 0 : SHIPPING_COST;
+    const tax = subtotal * TAX_RATE;
+    const total = subtotal + shipping + tax;
+    return { shipping, tax, total };
+  }, [subtotal]);
 
   return (
     <div className="rounded-xl border border-border bg-surface p-6">
