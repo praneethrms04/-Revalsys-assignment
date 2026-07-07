@@ -21,7 +21,15 @@ import { SITE, ROUTES } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "About",
   description: `Learn about ${SITE.name}'s story, mission, and commitment to premium electronics.`,
+  alternates: {
+    canonical: `${SITE.url}/about`,
+  },
   openGraph: {
+    title: `About ${SITE.name}`,
+    description: `Discover what drives ${SITE.name} — innovation, quality, and customer-first values.`,
+    url: `${SITE.url}/about`,
+  },
+  twitter: {
     title: `About ${SITE.name}`,
     description: `Discover what drives ${SITE.name} — innovation, quality, and customer-first values.`,
   },

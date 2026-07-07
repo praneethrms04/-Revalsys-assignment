@@ -1,5 +1,6 @@
 import { getProductById } from "@/services/products";
 import { ProductDetails } from "@/components/features/product-details";
+import { ProductJsonLd } from "@/components/shared/json-ld";
 import { SITE } from "@/lib/constants";
 import type { Metadata } from "next";
 
@@ -56,6 +57,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return (
     <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
+      {initialProduct && <ProductJsonLd product={initialProduct} />}
       <ProductDetails productId={productId} initialProduct={initialProduct} />
     </div>
   );

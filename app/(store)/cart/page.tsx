@@ -4,6 +4,7 @@ import { CartContent } from "./cart-content";
 export const metadata: Metadata = {
   title: "Cart",
   description: "Review your items and proceed to checkout.",
+  robots: { index: false, follow: false },
 };
 
 export default function CartPage() {

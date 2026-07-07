@@ -1,10 +1,25 @@
 import { ProductListing } from "@/components/features/product-listing";
+import { SITE } from "@/lib/constants";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Products",
   description:
     "Browse our curated collection of premium electronics. Find the perfect device for your needs.",
+  alternates: {
+    canonical: `${SITE.url}/products`,
+  },
+  openGraph: {
+    title: `Products | ${SITE.name}`,
+    description:
+      "Browse our curated collection of premium electronics. Find the perfect device for your needs.",
+    url: `${SITE.url}/products`,
+  },
+  twitter: {
+    title: `Products | ${SITE.name}`,
+    description:
+      "Browse our curated collection of premium electronics. Find the perfect device for your needs.",
+  },
 };
 
 export default function ProductsPage() {

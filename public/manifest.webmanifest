@@ -1,0 +1,16 @@
+{
+  "name": "Voltura",
+  "short_name": "Voltura",
+  "description": "Power meets precision. Premium electronics curated for those who demand the best.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
