@@ -19,14 +19,18 @@ export const NAV_LINKS = [
   { label: "About", href: ROUTES.about },
 ] as const;
 
-export const QUERY_KEYS = {
-  products: "products",
-  product: "product",
-  categories: "categories",
-} as const;
+export const productKeys = {
+  all: ["products"] as const,
+  detail: (id: number) => ["products", id] as const,
+  category: (category: string) => ["products", "category", category] as const,
+};
+
+export const categoryKeys = {
+  all: ["categories"] as const,
+};
 
 export const API = {
-  baseUrl: "https://fakestoreapi.com",
+  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
   endpoints: {
     products: "/products",
     categories: "/products/categories",
