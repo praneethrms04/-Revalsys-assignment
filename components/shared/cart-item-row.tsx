@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
@@ -18,6 +18,15 @@ interface CartItemRowProps {
 export const CartItemRow = memo(function CartItemRow({ item }: CartItemRowProps) {
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const removeItem = useCartStore((state) => state.removeItem);
+
+  const handleQuantityChange = useCallback(
+    (q: number) => updateQuantity(item.product.id, q),
+    [item.product.id, updateQuantity]
+  );
+  const handleRemove = useCallback(
+    () => removeItem(item.product.id),
+    [item.product.id, removeItem]
+  );
 
   return (
     <div className="flex gap-4 border-b border-border pb-4 sm:gap-6">
@@ -51,7 +60,7 @@ export const CartItemRow = memo(function CartItemRow({ item }: CartItemRowProps)
         <div className="flex items-center gap-3 sm:flex-col sm:items-end">
           <QuantitySelector
             value={item.quantity}
-            onChange={(q) => updateQuantity(item.product.id, q)}
+            onChange={handleQuantityChange}
           />
           <p className="min-w-[72px] text-right text-sm font-semibold tabular-nums">
             ${(item.product.price * item.quantity).toFixed(2)}
@@ -59,7 +68,7 @@ export const CartItemRow = memo(function CartItemRow({ item }: CartItemRowProps)
           <Button
             variant="ghost"
             size="icon-sm"
-            onClick={() => removeItem(item.product.id)}
+            onClick={handleRemove}
             aria-label={`Remove ${item.product.title} from cart`}
             className="text-text-secondary hover:text-destructive"
           >

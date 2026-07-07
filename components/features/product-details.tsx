@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -13,6 +13,7 @@ import {
   AlertCircle,
   RotateCcw,
 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { CategoryBadge } from "@/components/shared/category-badge";
 import { PriceTag } from "@/components/shared/price-tag";
@@ -24,6 +25,7 @@ import { RelatedProducts } from "@/components/features/related-products";
 import { useProduct } from "@/hooks/use-products";
 import { useCartStore } from "@/stores/cart-store";
 import { ROUTES } from "@/lib/constants";
+import { capitalize } from "@/lib/utils";
 import type { Product } from "@/types";
 
 interface ProductDetailsProps {
@@ -42,16 +44,17 @@ const MOCK_SPECS: Record<string, Record<string, string>> = {
   },
 };
 
-function getSpecs(category: string) {
-  return (
-    MOCK_SPECS[category] ?? {
-      Model: "Standard Edition",
-      SKU: `VL-${Math.floor(Math.random() * 10000)}`,
-      Weight: "1.5 lbs",
-      Material: "Premium build",
-      Warranty: "2 years",
-    }
-  );
+function getSpecs(category: string, id: number) {
+  const base = MOCK_SPECS[category];
+  if (base) return base;
+  const skuNum = ((id * 9301 + 49297) % 10000).toString().padStart(4, "0");
+  return {
+    Model: "Standard Edition",
+    SKU: `VL-${skuNum}`,
+    Weight: "1.5 lbs",
+    Material: "Premium build",
+    Warranty: "2 years",
+  };
 }
 
 function ProductDetailSkeleton() {
@@ -114,7 +117,7 @@ export function ProductDetails({ productId, initialProduct }: ProductDetailsProp
     );
   }
 
-  const specs = getSpecs(product.category);
+  const specs = useMemo(() => getSpecs(product.category, product.id), [product.category, product.id]);
 
   function handleAddToCart() {
     if (!product) return;
@@ -205,6 +208,7 @@ export function ProductDetails({ productId, initialProduct }: ProductDetailsProp
               variant="outline"
               size="lg"
               className="flex-1 gap-2 rounded-[10px] text-sm"
+              onClick={() => toast.success("Proceeding to checkout...")}
             >
               <Zap className="size-4" />
               Buy Now
@@ -214,6 +218,7 @@ export function ProductDetails({ productId, initialProduct }: ProductDetailsProp
               size="icon-lg"
               className="rounded-[10px]"
               aria-label="Add to wishlist"
+              onClick={() => toast.success("Added to wishlist!")}
             >
               <Heart className="size-4" />
             </Button>
@@ -234,6 +239,4 @@ export function ProductDetails({ productId, initialProduct }: ProductDetailsProp
   );
 }
 
-function capitalize(s: string) {
-  return s.split(" ").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-}
+

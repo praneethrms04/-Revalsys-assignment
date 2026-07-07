@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Loader2, LogIn, UserRound } from "lucide-react";
 import { useState } from "react";
 
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -149,9 +150,9 @@ export function LoginForm() {
             </Label>
             <button
               type="button"
-              className="text-sm text-accent hover:underline"
+              className="text-sm text-accent hover:underline disabled:pointer-events-none disabled:opacity-50"
               aria-label="Forgot password"
-              onClick={() => {}}
+              onClick={() => toast.info("Password reset link sent to your email")}
             >
               Forgot password?
             </button>
@@ -189,9 +190,9 @@ export function LoginForm() {
           Don&apos;t have an account?{" "}
           <button
             type="button"
-            className="text-accent hover:underline"
+            className="text-accent hover:underline disabled:pointer-events-none disabled:opacity-50"
             aria-label="Create an account"
-            onClick={() => {}}
+            onClick={() => toast.info("Account creation is coming soon!")}
           >
             Sign up
           </button>

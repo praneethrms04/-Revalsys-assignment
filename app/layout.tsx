@@ -38,14 +38,6 @@ export const metadata: Metadata = {
     description: SITE.description,
     url: SITE.url,
     siteName: SITE.name,
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: SITE.name,
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -53,7 +45,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -73,6 +64,12 @@ export default function RootLayout({
         <WebSiteJsonLd />
       </head>
       <body className="flex min-h-full flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:text-accent-foreground focus:shadow-lg focus:outline-none"
+        >
+          Skip to main content
+        </a>
         <QueryProvider>
           {children}
           <Toaster
