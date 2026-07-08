@@ -64,6 +64,7 @@ app/
 ├── opengraph-image.tsx     Auto-generated OG image (next/og)
 ├── robots.ts               Robots.txt (allow all)
 ├── sitemap.ts              Static sitemap with priorities
+├── not-found.tsx           404 page (styled)
 ├── icon.svg                PWA favicon
 └── (store)/
     ├── layout.tsx          Navbar + main + Footer
@@ -207,7 +208,7 @@ This project was developed with assistance from:
 - **Claude (Anthropic)** — Code review, refactoring guidance, architectural recommendations, issue diagnosis, and documentation generation
 - **GitHub Copilot** — Inline code completion during development
 
-All AI-generated code was reviewed, tested, and validated by the development team.
+All AI-generated code was reviewed, tested, and validated.
 
 ---
 
