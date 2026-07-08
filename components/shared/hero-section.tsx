@@ -106,14 +106,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="flex justify-center pb-6">
-        <div className="flex flex-col items-center gap-1 text-text-tertiary">
-          <span className="text-[10px] font-medium uppercase tracking-widest">
-            Scroll
-          </span>
-          <div className="h-8 w-px bg-border" />
-        </div>
-      </div>
+
     </section>
   );
 }

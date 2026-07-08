@@ -8,10 +8,15 @@ interface RatingStarsProps {
 export function RatingStars({ rate, count }: RatingStarsProps) {
   return (
     <div className="flex items-center gap-1.5">
-      <div className="flex" aria-label={`${rate} out of 5 stars`}>
+      <div
+        className="flex"
+        role="img"
+        aria-label={`${rate} out of 5 stars`}
+      >
         {[1, 2, 3, 4, 5].map((star) => (
           <Star
             key={star}
+            aria-hidden="true"
             className={`size-3.5 ${
               star <= Math.round(rate)
                 ? "fill-rating text-rating"
@@ -20,7 +25,13 @@ export function RatingStars({ rate, count }: RatingStarsProps) {
           />
         ))}
       </div>
-      <span className="text-xs text-text-secondary">({count})</span>
+
+      <span
+        className="text-xs text-text-secondary"
+        aria-label={`${count} reviews`}
+      >
+        ({count})
+      </span>
     </div>
   );
 }

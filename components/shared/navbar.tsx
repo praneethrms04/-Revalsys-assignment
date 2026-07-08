@@ -27,7 +27,10 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-2xl supports-backdrop-filter:bg-background/60">
-      <nav aria-label="Main navigation" className="mx-auto flex h-14 max-w-[1280px] items-center justify-between px-4 sm:px-6">
+      <nav
+        aria-label="Main navigation"
+        className="mx-auto flex h-14 max-w-[1280px] items-center justify-between px-4 sm:px-6"
+      >
         <Link
           href={ROUTES.home}
           className="text-lg font-semibold tracking-tight transition-opacity hover:opacity-80"
@@ -43,9 +46,10 @@ export function Navbar() {
               aria-current={isActive(link.href) ? "page" : undefined}
               className={`
                 relative text-sm transition-colors
-                ${isActive(link.href)
-                  ? "text-foreground font-medium after:absolute after:-bottom-4.5 after:left-0 after:h-0.5 after:w-full after:bg-foreground"
-                  : "text-text-secondary hover:text-foreground"
+                ${
+                  isActive(link.href)
+                    ? "text-foreground font-medium after:absolute after:-bottom-4.5 after:left-0 after:h-0.5 after:w-full after:bg-foreground"
+                    : "text-text-secondary hover:text-foreground"
                 }
               `}
             >
@@ -56,15 +60,25 @@ export function Navbar() {
 
         <div className="flex items-center gap-1">
           <Link href={ROUTES.products} aria-label="Search products">
-            <Button variant="ghost" size="icon">
-              <Search className="size-5" />
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Search product"
+              className="h-11 w-11 cursor-pointer"
+            >
+              <Search className="size-5" aria-hidden="true" />
             </Button>
           </Link>
 
           <Link href={ROUTES.cart} aria-label="Open cart">
-            <Button variant="ghost" size="icon">
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Open cart"
+              className="h-11 w-11 cursor-pointer"
+            >
               <span className="relative">
-                <ShoppingCart className="size-5" />
+                <ShoppingCart className="size-5" aria-hidden="true" />
                 {totalItems > 0 && (
                   <Badge
                     variant="default"
@@ -78,8 +92,13 @@ export function Navbar() {
           </Link>
 
           <Link href={ROUTES.login} aria-label="User account">
-            <Button variant="ghost" size="icon">
-              <User className="size-5" />
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="User account"
+              className="h-11 w-11 cursor-pointer"
+            >
+              <User className="size-5" aria-hidden="true" />
             </Button>
           </Link>
 
@@ -87,7 +106,7 @@ export function Navbar() {
             <Sheet>
               <SheetTrigger
                 className={cn(
-                  buttonVariants({ variant: "ghost", size: "icon" })
+                  buttonVariants({ variant: "ghost", size: "icon" }),
                 )}
                 aria-label="Open menu"
               >
@@ -114,9 +133,10 @@ export function Navbar() {
                   ))}
                   <Link
                     href={ROUTES.cart}
+                    aria-label="Add to Cart"
                     className="flex items-center gap-2 text-base font-medium text-text-secondary transition-colors hover:text-foreground"
                   >
-                    <ShoppingCart className="size-4" />
+                    <ShoppingCart className="size-4" aria-hidden="true" />
                     Cart
                     {totalItems > 0 && (
                       <Badge variant="default" className="rounded-full">

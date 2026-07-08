@@ -2,7 +2,9 @@ export const SITE = {
   name: "Voltura",
   tagline: "Power meets precision",
   description: "Discover premium electronics at Voltura.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://voltura-eight.vercel.app",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://voltura-eight.vercel.app"),
 } as const;
 
 export const ROUTES = {
@@ -15,7 +17,7 @@ export const ROUTES = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Products", href: ROUTES.products },
+  { label: "Products", href: ROUTES.products,  },
   { label: "About", href: ROUTES.about },
 ] as const;
 

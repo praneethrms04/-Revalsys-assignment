@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { ArrowRight, AlertCircle, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ProductGrid, ProductGridSkeleton } from "@/components/shared/product-grid";
+import {
+  ProductGrid,
+  ProductGridSkeleton,
+} from "@/components/shared/product-grid";
 import { useProducts } from "@/hooks/use-products";
 import { PAGINATION, ROUTES } from "@/lib/constants";
 
@@ -69,7 +72,7 @@ function SectionShell({ children }: { children: React.ReactNode }) {
               Handpicked favorites from our latest collection
             </p>
           </div>
-          <Link href={ROUTES.products}>
+          <Link href={ROUTES.products} aria-label="View all Products">
             <Button
               variant="ghost"
               size="sm"
