@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -79,13 +79,14 @@ function ProductDetailSkeleton() {
 }
 
 export function ProductDetails({ productId, initialProduct }: ProductDetailsProps) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
   const [quantity, setQuantity] = useState(1);
-  const { data: queryProduct, isLoading, isError, error, refetch } = useProduct(productId, initialProduct);
+  const { data: product, isLoading, isError, error, refetch } = useProduct(productId, initialProduct);
   const addItem = useCartStore((state) => state.addItem);
 
-  const product = initialProduct ?? queryProduct;
-
-  if (!initialProduct && !queryProduct && isLoading) {
+  if (!mounted || isLoading) {
     return (
       <div className="py-8 sm:py-12">
         <ProductDetailSkeleton />
