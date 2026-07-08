@@ -80,10 +80,12 @@ function ProductDetailSkeleton() {
 
 export function ProductDetails({ productId, initialProduct }: ProductDetailsProps) {
   const [quantity, setQuantity] = useState(1);
-  const { data: product, isLoading, isError, error, refetch } = useProduct(productId, initialProduct);
+  const { data: queryProduct, isLoading, isError, error, refetch } = useProduct(productId, initialProduct);
   const addItem = useCartStore((state) => state.addItem);
 
-  if (isLoading) {
+  const product = initialProduct ?? queryProduct;
+
+  if (!initialProduct && !queryProduct && isLoading) {
     return (
       <div className="py-8 sm:py-12">
         <ProductDetailSkeleton />
