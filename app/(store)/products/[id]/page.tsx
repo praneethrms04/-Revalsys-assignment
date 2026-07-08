@@ -44,7 +44,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     };
   } catch {
-    return { title: "Product Not Found", robots: { index: false } };
+    return {
+      title: "Product Not Found",
+      description: "The requested product could not be found.",
+      robots: { index: false },
+    };
   }
 }
 
