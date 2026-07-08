@@ -35,6 +35,7 @@ export const API = {
   baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://fakestoreapi.com",
   endpoints: {
     products: "/products",
+    product: (id: number) => `/products/${id}`,
     categories: "/products/categories",
   },
 } as const;

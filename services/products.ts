@@ -8,9 +8,8 @@ export async function getAllProducts(): Promise<Product[]> {
 }
 
 export async function getProductById(id: number): Promise<Product> {
-  const { data } = await apiClient.get<Product>(
-    `${API.endpoints.products}/${id}`
-  );
+  const { data } = await apiClient.get<Product>(API.endpoints.product(id));
+  s;
   return data;
 }
 
@@ -20,10 +19,10 @@ export async function getCategories(): Promise<string[]> {
 }
 
 export async function getProductsByCategory(
-  category: string
+  category: string,
 ): Promise<Product[]> {
   const { data } = await apiClient.get<Product[]>(
-    `${API.endpoints.products}/category/${encodeURIComponent(category)}`
+    `${API.endpoints.products}/category/${encodeURIComponent(category)}`,
   );
   return data;
 }
