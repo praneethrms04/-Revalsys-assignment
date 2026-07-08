@@ -63,6 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fakestoreapi.com" />
         <OrganizationJsonLd />
         <WebSiteJsonLd />
       </head>
