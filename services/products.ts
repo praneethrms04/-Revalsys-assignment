@@ -9,7 +9,6 @@ export async function getAllProducts(): Promise<Product[]> {
 
 export async function getProductById(id: number): Promise<Product> {
   const { data } = await apiClient.get<Product>(API.endpoints.product(id));
-  s;
   return data;
 }
 

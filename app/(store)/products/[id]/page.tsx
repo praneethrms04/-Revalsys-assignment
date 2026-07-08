@@ -48,15 +48,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProductDetailPage({ params }: Props) {
   const { id } = await params;
+
   const productId = Number(id);
 
   let initialProduct = undefined;
-  if (Number.isFinite(productId)) {
-    try {
-      initialProduct = await getProductById(productId);
-    } catch {
-      // fall through — TanStack Query will fetch on the client
-    }
+  try {
+    initialProduct = await getProductById(productId);
+  } catch {
+    // fall through — TanStack Query will fetch on the client
   }
 
   return (
