@@ -28,7 +28,9 @@ const FeaturedProducts = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: {
+    absolute: `${SITE.name} — ${SITE.tagline}`,
+  },
   description:
     "Discover premium electronics at Voltura. Curated gadgets, audio, wearables, and smart home devices — power meets precision.",
   alternates: {

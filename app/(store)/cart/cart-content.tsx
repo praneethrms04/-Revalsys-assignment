@@ -55,7 +55,7 @@ export function CartContent() {
         </div>
 
         <div className="mt-6">
-          <Link href={ROUTES.products}>
+          <Link href={ROUTES.products} aria-label="Go to Products">
             <Button variant="outline" size="sm" className="gap-1.5">
               Continue Shopping
             </Button>

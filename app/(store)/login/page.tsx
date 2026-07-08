@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import type { Metadata } from "next";
+import { SITE } from "@/lib/constants";
 
 const LoginForm = dynamic(() => import("./login-form").then((m) => ({ default: m.LoginForm })), {
   ssr: true,
@@ -23,7 +24,20 @@ const LoginForm = dynamic(() => import("./login-form").then((m) => ({ default: m
 export const metadata: Metadata = {
   title: "Sign In",
   description: "Sign in to your Voltura account or continue as a guest.",
-  robots: { index: false, follow: false },
+  robots: { index: false, follow: true },
+  alternates: {
+    canonical: `${SITE.url}/login`,
+  },
+  openGraph: {
+    title: "Sign In | Voltura",
+    description: "Sign in to your Voltura account or continue as a guest.",
+    url: `${SITE.url}/login`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sign In | Voltura",
+    description: "Sign in to your Voltura account or continue as a guest.",
+  },
 };
 
 export default function LoginPage() {

@@ -41,9 +41,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const product = await getProductById(productId);
     const url = `${SITE.url}/products/${id}`;
+    const productTitle =
+      product.title.length > 60
+        ? `${product.title.slice(0, 57)}...`
+        : product.title;
 
     return {
-      title: product.title,
+      title: productTitle,
       description: product.description.slice(0, 160),
       alternates: { canonical: url },
       openGraph: {
@@ -60,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     };
   } catch {
-    return { title: "Product Not Found" };
+    return { title: "Product Not Found", robots: { index: false } };
   }
 }
 

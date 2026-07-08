@@ -68,6 +68,7 @@ export function ProductJsonLd({ product }: { product: Product }) {
     description: product.description,
     image: product.image,
     category: product.category,
+    url: `${SITE.url}/products/${product.id}`,
     offers: {
       "@type": "Offer",
       price: product.price,

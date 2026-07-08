@@ -16,12 +16,16 @@ export function CartSummary() {
   const { totalItems, subtotal } = useCartStore(
     useShallow((state) => ({
       totalItems: state.items.reduce((sum, item) => sum + item.quantity, 0),
-      subtotal: state.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
-    }))
+      subtotal: state.items.reduce(
+        (sum, item) => sum + item.product.price * item.quantity,
+        0,
+      ),
+    })),
   );
 
   const { shipping, tax, total } = useMemo(() => {
-    const shipping = subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0 ? 0 : SHIPPING_COST;
+    const shipping =
+      subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0 ? 0 : SHIPPING_COST;
     const tax = subtotal * TAX_RATE;
     const total = subtotal + shipping + tax;
     return { shipping, tax, total };
@@ -44,7 +48,7 @@ export function CartSummary() {
           <span className="text-text-secondary">Shipping</span>
           <span className="tabular-nums">
             {shipping === 0 ? (
-              <span className="text-success">Free</span>
+              <span className="font-medium text-emerald-700 ">Free</span>
             ) : (
               `$${shipping.toFixed(2)}`
             )}

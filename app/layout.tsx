@@ -29,6 +29,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: SITE.name }],
   creator: SITE.name,
+  publisher: SITE.name,
+  applicationName: SITE.name,
   icons: {
     icon: "/icon.svg",
   },
@@ -45,6 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
+    site: "@voltura",
   },
   robots: {
     index: true,
