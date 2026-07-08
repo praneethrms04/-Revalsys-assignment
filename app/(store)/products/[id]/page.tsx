@@ -1,30 +1,8 @@
-import dynamic from "next/dynamic";
 import { getProductById } from "@/services/products";
 import { ProductJsonLd } from "@/components/shared/json-ld";
+import { ProductDetails } from "@/components/features/product-details";
 import { SITE } from "@/lib/constants";
 import type { Metadata } from "next";
-
-const ProductDetails = dynamic(
-  () => import("@/components/features/product-details").then((m) => ({ default: m.ProductDetails })),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        <div className="space-y-4">
-          <div className="aspect-square max-w-md rounded-2xl bg-muted" />
-          <div className="h-4 w-48 rounded-lg bg-muted" />
-          <div className="h-6 w-72 rounded-lg bg-muted" />
-          <div className="h-4 w-full max-w-96 rounded-lg bg-muted" />
-        </div>
-        <div className="space-y-4">
-          <div className="h-8 w-64 rounded-lg bg-muted" />
-          <div className="h-24 w-full rounded-lg bg-muted" />
-          <div className="h-12 w-full rounded-lg bg-muted" />
-        </div>
-      </div>
-    ),
-  }
-);
 
 interface Props {
   params: Promise<{ id: string }>;
