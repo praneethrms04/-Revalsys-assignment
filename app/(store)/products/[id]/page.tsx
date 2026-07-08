@@ -1,7 +1,8 @@
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { getProductById } from "@/services/products";
 import { ProductJsonLd } from "@/components/shared/json-ld";
 import { ProductDetails } from "@/components/features/product-details";
-import { SITE } from "@/lib/constants";
+import { SITE, productKeys } from "@/lib/constants";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -55,17 +56,21 @@ export default async function ProductDetailPage({ params }: Props) {
     notFound();
   }
 
+  const queryClient = new QueryClient();
   let initialProduct = undefined;
   try {
     initialProduct = await getProductById(productId);
+    queryClient.setQueryData(productKeys.detail(productId), initialProduct);
   } catch {
     // fall through — TanStack Query will fetch on the client
   }
 
   return (
-    <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
-      {initialProduct && <ProductJsonLd product={initialProduct} />}
-      <ProductDetails productId={productId} initialProduct={initialProduct} />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
+        {initialProduct && <ProductJsonLd product={initialProduct} />}
+        <ProductDetails productId={productId} />
+      </div>
+    </HydrationBoundary>
   );
 }

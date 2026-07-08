@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -26,11 +26,9 @@ import { useProduct } from "@/hooks/use-products";
 import { useCartStore } from "@/stores/cart-store";
 import { ROUTES } from "@/lib/constants";
 import { capitalize } from "@/lib/utils";
-import type { Product } from "@/types";
 
 interface ProductDetailsProps {
   productId: number;
-  initialProduct?: Product;
 }
 
 const MOCK_SPECS: Record<string, Record<string, string>> = {
@@ -78,15 +76,20 @@ function ProductDetailSkeleton() {
   );
 }
 
-export function ProductDetails({ productId, initialProduct }: ProductDetailsProps) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-
+export function ProductDetails({ productId }: ProductDetailsProps) {
   const [quantity, setQuantity] = useState(1);
-  const { data: product, isLoading, isError, error, refetch } = useProduct(productId, initialProduct);
+  const { data: product, isLoading, isError, error, refetch } = useProduct(productId);
   const addItem = useCartStore((state) => state.addItem);
 
-  if (!mounted || isLoading) {
+  const specs = useMemo(() => getSpecs(product?.category ?? "", product?.id ?? 0), [product?.category, product?.id]);
+
+  const handleAddToCart = useCallback(() => {
+    if (!product) return;
+    addItem(product, quantity);
+    toast.success(`${product.title.slice(0, 48)}… added to cart`);
+  }, [product, quantity, addItem]);
+
+  if (isLoading) {
     return (
       <div className="py-8 sm:py-12">
         <ProductDetailSkeleton />
@@ -119,14 +122,6 @@ export function ProductDetails({ productId, initialProduct }: ProductDetailsProp
       </div>
     );
   }
-
-  const specs = useMemo(() => getSpecs(product.category, product.id), [product.category, product.id]);
-
-  const handleAddToCart = useCallback(() => {
-    if (!product) return;
-    addItem(product, quantity);
-    toast.success(`${product.title.slice(0, 48)}… added to cart`);
-  }, [product, quantity, addItem]);
 
   return (
     <div className="py-8 sm:py-12">
