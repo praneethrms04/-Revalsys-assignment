@@ -3,6 +3,7 @@ import { ProductJsonLd } from "@/components/shared/json-ld";
 import { ProductDetails } from "@/components/features/product-details";
 import { SITE } from "@/lib/constants";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -50,6 +51,9 @@ export default async function ProductDetailPage({ params }: Props) {
   const { id } = await params;
 
   const productId = Number(id);
+  if (!Number.isFinite(productId)) {
+    notFound();
+  }
 
   let initialProduct = undefined;
   try {
