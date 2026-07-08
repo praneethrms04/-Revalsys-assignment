@@ -3,6 +3,7 @@
 import { memo, useId } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
 
 const SORT_OPTIONS = [
   { label: "Featured", value: "featured" },
@@ -55,35 +56,28 @@ export const ProductToolbar = memo(function ProductToolbar({
           />
         </div>
 
-        <div className="flex items-center gap-3">
-          <select
-            id={categoryId}
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+          <Select
             value={selectedCategory}
-            onChange={(e) => onCategoryChange(e.target.value)}
-            className="h-10 rounded-[10px] border border-border bg-background px-3 text-sm text-foreground outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
-            aria-label="Filter by category"
-          >
-            <option value="">All Categories</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {CATEGORY_LABEL(cat)}
-              </option>
-            ))}
-          </select>
+            onChange={onCategoryChange}
+            options={[
+              { label: "All Categories", value: "" },
+              ...categories.map((cat) => ({
+                label: CATEGORY_LABEL(cat),
+                value: cat,
+              })),
+            ]}
+            label="Filter by category"
+            className="sm:w-44"
+          />
 
-          <select
-            id={sortId}
+          <Select
             value={sort}
-            onChange={(e) => onSortChange(e.target.value)}
-            className="h-10 rounded-[10px] border border-border bg-background px-3 text-sm text-foreground outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
-            aria-label="Sort by"
-          >
-            {SORT_OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+            onChange={onSortChange}
+            options={[...SORT_OPTIONS]}
+            label="Sort by"
+            className="sm:w-40"
+          />
         </div>
       </div>
 

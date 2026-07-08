@@ -57,23 +57,25 @@ export const CartItemRow = memo(function CartItemRow({ item }: CartItemRowProps)
           </p>
         </div>
 
-        <div className="flex items-center gap-3 sm:flex-col sm:items-end">
-          <QuantitySelector
-            value={item.quantity}
-            onChange={handleQuantityChange}
-          />
-          <p className="min-w-[72px] text-right text-sm font-semibold tabular-nums">
+        <div className="flex flex-wrap items-center gap-2 sm:flex-col sm:items-end sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <QuantitySelector
+              value={item.quantity}
+              onChange={handleQuantityChange}
+            />
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              onClick={handleRemove}
+              aria-label={`Remove ${item.product.title} from cart`}
+              className="text-text-secondary hover:text-destructive"
+            >
+              <Trash2 className="size-4" />
+            </Button>
+          </div>
+          <p className="ml-auto text-right text-sm font-semibold tabular-nums sm:ml-0">
             ${(item.product.price * item.quantity).toFixed(2)}
           </p>
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            onClick={handleRemove}
-            aria-label={`Remove ${item.product.title} from cart`}
-            className="text-text-secondary hover:text-destructive"
-          >
-            <Trash2 className="size-4" />
-          </Button>
         </div>
       </div>
     </div>

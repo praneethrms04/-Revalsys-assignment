@@ -31,7 +31,7 @@ export function CartContent() {
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1fr_360px]">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_360px]">
       <div>
         <div className="mb-6 flex items-center justify-between">
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">

@@ -121,7 +121,7 @@ function BrandStory() {
   return (
     <section className="px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-[1280px]">
-        <div className="grid items-center gap-12 md:grid-cols-2">
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Our Story
@@ -165,7 +165,7 @@ function MissionVision() {
   return (
     <section className="bg-surface px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-[1280px]">
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <article className="rounded-2xl border border-border bg-background p-8">
             <h3 className="mb-3 text-xl font-semibold">Our Mission</h3>
             <p className="text-sm leading-relaxed text-text-secondary">
@@ -200,7 +200,7 @@ function CoreValues() {
             The principles that guide every decision we make.
           </p>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {values.map((value) => {
             const Icon = value.icon;
             return (
@@ -265,7 +265,7 @@ function Contact() {
             you.
           </p>
         </div>
-        <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-3">
+        <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-3">
           {contactDetails.map((detail) => {
             const Icon = detail.icon;
             const Wrapper = detail.href ? "a" : "div";

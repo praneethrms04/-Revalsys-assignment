@@ -13,7 +13,7 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-background">
       <div className="mx-auto max-w-[1280px] px-4 pb-16 pt-12 sm:px-6 sm:pb-20 sm:pt-16 lg:pb-28 lg:pt-20">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="relative z-10">
             <span className="inline-block text-xs font-semibold uppercase tracking-[0.08em] text-accent">
               New Arrivals

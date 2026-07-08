@@ -14,7 +14,7 @@ interface BreadcrumbProps {
 export const Breadcrumb = memo(function Breadcrumb({ segments }: BreadcrumbProps) {
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="flex items-center gap-1.5 text-sm text-text-secondary">
+      <ol className="flex flex-wrap items-center gap-1.5 text-sm text-text-secondary">
         {segments.map((segment, i) => {
           const isLast = i === segments.length - 1;
           return (

@@ -60,7 +60,7 @@ function getSpecs(category: string, id: number) {
 function ProductDetailSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className="grid gap-10 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div className="aspect-square rounded-2xl bg-muted" />
         <div className="space-y-4">
           <div className="h-3 w-20 rounded-full bg-muted" />
@@ -135,7 +135,7 @@ export function ProductDetails({ productId, initialProduct }: ProductDetailsProp
         ]}
       />
 
-      <div className="grid gap-10 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div className="relative aspect-square overflow-hidden rounded-2xl bg-surface">
           <Image
             src={product.image}
@@ -179,7 +179,7 @@ export function ProductDetails({ productId, initialProduct }: ProductDetailsProp
 
           <div className="border-t border-border pt-4">
             <h3 className="mb-2 text-sm font-semibold">Specifications</h3>
-            <dl className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
+            <dl className="grid grid-cols-1 gap-x-4 gap-y-1.5 text-sm sm:grid-cols-2">
               {Object.entries(specs).map(([key, value]) => (
                 <div key={key} className="contents">
                   <dt className="text-text-secondary">{key}</dt>
