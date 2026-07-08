@@ -323,12 +323,11 @@ function CTA() {
   return (
     <section className="px-4 pb-24 sm:px-6 sm:pb-32">
       <div className="mx-auto max-w-[1280px]">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-accent to-accent/80 px-8 py-16 text-center text-white sm:px-16 sm:py-24">
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_left,white/15%,transparent_60%)]" />
+        <div className="rounded-2xl border border-border bg-surface px-8 py-16 text-center sm:px-16 sm:py-24">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Ready to find your next favorite device?
           </h2>
-          <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-white/80 sm:text-base">
+          <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-text-secondary sm:text-base">
             Browse our curated collection of premium electronics — each product
             selected for quality, design, and performance.
           </p>
@@ -337,7 +336,7 @@ function CTA() {
               href={ROUTES.products}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 gap-2 rounded-[10px] bg-white text-accent text-sm shadow-lg hover:bg-white/90"
+                "h-11 gap-2 rounded-[10px] text-sm"
               )}
             >
               Shop Now
