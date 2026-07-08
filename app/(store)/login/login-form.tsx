@@ -122,7 +122,7 @@ export function LoginForm() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-text-secondary hover:text-foreground"
+                className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer text-text-secondary hover:text-foreground"
                 aria-label={showPassword ? "Hide password" : "Show password"}
                 tabIndex={-1}
               >
@@ -150,7 +150,7 @@ export function LoginForm() {
             </Label>
             <button
               type="button"
-              className="text-sm text-accent hover:underline disabled:pointer-events-none disabled:opacity-50"
+              className="text-sm text-accent hover:underline disabled:pointer-events-none disabled:opacity-50 cursor-pointer"
               aria-label="Forgot password"
               onClick={() => toast.info("Password reset link sent to your email")}
             >
@@ -190,7 +190,7 @@ export function LoginForm() {
           Don&apos;t have an account?{" "}
           <button
             type="button"
-            className="text-accent hover:underline disabled:pointer-events-none disabled:opacity-50"
+            className="text-accent hover:underline disabled:pointer-events-none disabled:opacity-50 cursor-pointer"
             aria-label="Create an account"
             onClick={() => toast.info("Account creation is coming soon!")}
           >

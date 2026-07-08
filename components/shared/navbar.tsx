@@ -64,7 +64,7 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               aria-label="Search product"
-              className="h-11 w-11 cursor-pointer"
+              className="h-11 w-11"
             >
               <Search className="size-5" aria-hidden="true" />
             </Button>
@@ -75,7 +75,7 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               aria-label="Open cart"
-              className="h-11 w-11 cursor-pointer"
+              className="h-11 w-11"
             >
               <span className="relative">
                 <ShoppingCart className="size-5" aria-hidden="true" />
@@ -96,7 +96,7 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               aria-label="User account"
-              className="h-11 w-11 cursor-pointer"
+              className="h-11 w-11"
             >
               <User className="size-5" aria-hidden="true" />
             </Button>
