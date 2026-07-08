@@ -187,13 +187,13 @@ npm start
 | `NEXT_PUBLIC_API_BASE_URL` | No | `https://fakestoreapi.com` | Base URL for the product API |
 | `NEXT_PUBLIC_SITE_URL` | Yes (production) | `http://localhost:3000` | Canonical site URL for SEO metadata and OG images |
 
-**Important**: In production, `NEXT_PUBLIC_SITE_URL` must be set to your deployed domain (e.g., `https://voltura.com`). Without it, canonical URLs and sitemap entries will point to `localhost`, which will cause SEO duplication penalties.
+**Important**: In production, `NEXT_PUBLIC_SITE_URL` must be set to your deployed domain (e.g., `https://voltura-eight.vercel.app/`). Without it, canonical URLs and sitemap entries will point to `localhost`, which will cause SEO duplication penalties.
 
 ### Example `.env`
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=https://fakestoreapi.com
-NEXT_PUBLIC_SITE_URL=https://voltura.com
+NEXT_PUBLIC_SITE_URL=https://voltura-eight.vercel.app
 ```
 
 ---
