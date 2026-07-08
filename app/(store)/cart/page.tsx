@@ -5,7 +5,6 @@ import { SITE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Cart",
   description: "Review your items and proceed to checkout.",
-  robots: { index: false, follow: true },
   alternates: {
     canonical: `${SITE.url}/cart`,
   },

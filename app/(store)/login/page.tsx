@@ -24,7 +24,6 @@ const LoginForm = dynamic(() => import("./login-form").then((m) => ({ default: m
 export const metadata: Metadata = {
   title: "Sign In",
   description: "Sign in to your Voltura account or continue as a guest.",
-  robots: { index: false, follow: true },
   alternates: {
     canonical: `${SITE.url}/login`,
   },
