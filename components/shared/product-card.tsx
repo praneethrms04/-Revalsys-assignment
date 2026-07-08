@@ -28,6 +28,8 @@ export function ProductCard({ product }: ProductCardProps) {
           src={product.image}
           alt={product.title}
           fill
+          priority
+          fetchPriority="high"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           className="object-contain p-6 transition-transform duration-300 group-hover:scale-105"
         />
@@ -37,9 +39,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <CategoryBadge category={product.category} />
 
         <h1 className="text-sm font-medium leading-snug text-foreground line-clamp-2">
-          <Link href={ROUTES.productDetail(product.id)}>
-            {product.title}
-          </Link>
+          <Link href={ROUTES.productDetail(product.id)}>{product.title}</Link>
         </h1>
 
         <RatingStars rate={product.rating.rate} count={product.rating.count} />

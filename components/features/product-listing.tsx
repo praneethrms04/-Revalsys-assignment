@@ -126,6 +126,7 @@ export function ProductListing() {
               variant="outline"
               size="sm"
               className="mt-2 gap-1.5"
+              aria-label="Clear Filters"
               onClick={clearFilters}
             >
               <RotateCcw className="size-3.5" />
