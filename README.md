@@ -297,6 +297,7 @@ The project follows Next.js App Router SEO conventions:
 3. **No checkout processing**: The checkout button shows a toast notification. No payment integration, order creation, or confirmation flow is implemented.
 4. **Small catalog**: The API returns ~20 products. No pagination or infinite scroll is implemented.
 5. **Static product specifications**: The Fake Store API does not provide specs; mock data is used with deterministic fallbacks.
+6. **Image optimization**: Product images are sourced from the public Fake Store API. While Next.js Image optimization is used, the original images are large and outside the application's control. In a production environment, these images would be served from an optimized CDN or transformed into modern formats (WebP/AVIF) to further improve Lighthouse performance and Largest Contentful Paint (LCP).
 
 ---
 
