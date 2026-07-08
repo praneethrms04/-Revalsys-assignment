@@ -290,7 +290,7 @@ Target scores for `https://voltura-eight.vercel.app/` (mobile):
 |---|---|---|
 | **Performance** | 90+ | Achieved through image optimization (`next/image` with WebP/AVIF), resource preconnect to API domain, TanStack Query caching with hydration, and semantic HTML reducing DOM complexity |
 | **Accessibility** | 95+ | Proper heading hierarchy (`h1` → `h2` → `h3`), ARIA labels on all icon buttons, `role="alert"` on form errors, skip-to-content link, keyboard-navigable custom `Select` component, semantic landmarks |
-| **Best Practices** | 95+ | Correct robots.txt (`/cart`, `/login` disallowed), `next/font` with `display: swap`, no deprecated APIs, proper error boundaries, TypeScript strict mode |
+| **Best Practices** | 95+ | `next/font` with `display: swap`, no deprecated APIs, proper error boundaries, TypeScript strict mode |
 | **SEO** | 100 | Page-level metadata with OG/Twitter cards on every page, `generateMetadata` for dynamic product pages, JSON-LD structured data (Organization + WebSite + Product), sitemap.xml, canonical URLs, robots.txt allow all |
 
 **Key optimizations contributing to scores:**
@@ -341,21 +341,6 @@ Target scores for `https://voltura-eight.vercel.app/` (mobile):
 - [ ] **URL-based search/filter state** — Sync filter state with URL search params so filtered views are shareable and bookmarked
 - [ ] **Multi-tab cart sync** — Use `BroadcastChannel` API or storage events to sync Zustand persist across tabs
 - [ ] **Performance monitoring** — Add Lighthouse CI or Web Vitals tracking
-
----
-
-## Screenshots
-
-> Screenshots will be added here once the visual design is finalized.
-
-| Page | Preview |
-|---|---|
-| Home | ![](.github/screenshots/home.png) |
-| Product Listing | ![](.github/screenshots/products.png) |
-| Product Detail | ![](.github/screenshots/product-detail.png) |
-| Cart | ![](.github/screenshots/cart.png) |
-| Login | ![](.github/screenshots/login.png) |
-| About | ![](.github/screenshots/about.png) |
 
 ---
 
