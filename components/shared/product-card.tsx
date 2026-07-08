@@ -36,11 +36,11 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="flex flex-1 flex-col gap-2 p-4">
         <CategoryBadge category={product.category} />
 
-        <h3 className="text-sm font-medium leading-snug text-foreground line-clamp-2">
+        <h1 className="text-sm font-medium leading-snug text-foreground line-clamp-2">
           <Link href={ROUTES.productDetail(product.id)}>
             {product.title}
           </Link>
-        </h3>
+        </h1>
 
         <RatingStars rate={product.rating.rate} count={product.rating.count} />
 
