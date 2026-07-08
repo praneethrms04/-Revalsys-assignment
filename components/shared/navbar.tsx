@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ShoppingCart, User, Menu, Search } from "lucide-react";
+import { ShoppingCart, User, Menu, LogOut } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -15,14 +16,30 @@ import {
 } from "@/components/ui/sheet";
 import { ROUTES, NAV_LINKS, SITE } from "@/lib/constants";
 import { useCartStore, selectCartCount } from "@/stores/cart-store";
+import { useAuthStore } from "@/stores/auth-store";
 
 export function Navbar() {
   const pathname = usePathname();
   const totalItems = useCartStore(selectCartCount);
+  const user = useAuthStore((state) => state.user);
+  const isGuest = useAuthStore((state) => state.isGuest);
+  const logout = useAuthStore((state) => state.logout);
+  const [sheetOpen, setSheetOpen] = useState(false);
+
+  const isAuthenticated = Boolean(user) || isGuest;
 
   function isActive(href: string) {
     if (href === ROUTES.home) return pathname === href;
     return pathname.startsWith(href);
+  }
+
+  function closeSheet() {
+    setSheetOpen(false);
+  }
+
+  function handleLogout() {
+    logout();
+    closeSheet();
   }
 
   return (
@@ -59,17 +76,6 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-1">
-          <Link href={ROUTES.products} aria-label="Search products">
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-label="Search product"
-              className="h-11 w-11"
-            >
-              <Search className="size-5" aria-hidden="true" />
-            </Button>
-          </Link>
-
           <Link href={ROUTES.cart} aria-label="Open cart">
             <Button
               variant="ghost"
@@ -91,7 +97,7 @@ export function Navbar() {
             </Button>
           </Link>
 
-          <Link href={ROUTES.login} aria-label="User account">
+          {isAuthenticated ? (
             <Button
               variant="ghost"
               size="icon"
@@ -100,10 +106,19 @@ export function Navbar() {
             >
               <User className="size-5" aria-hidden="true" />
             </Button>
-          </Link>
+          ) : (
+            <Link href={ROUTES.login}>
+              <Button
+                size="default"
+                className="h-9 gap-1.5 px-4 text-sm shadow-sm"
+              >
+                Sign In
+              </Button>
+            </Link>
+          )}
 
           <div className="md:hidden">
-            <Sheet>
+            <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
               <SheetTrigger
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
@@ -121,6 +136,7 @@ export function Navbar() {
                     <Link
                       key={link.href}
                       href={link.href}
+                      onClick={closeSheet}
                       aria-current={isActive(link.href) ? "page" : undefined}
                       className={`text-base font-medium transition-colors ${
                         isActive(link.href)
@@ -131,19 +147,26 @@ export function Navbar() {
                       {link.label}
                     </Link>
                   ))}
-                  <Link
-                    href={ROUTES.cart}
-                    aria-label="Add to Cart"
-                    className="flex items-center gap-2 text-base font-medium text-text-secondary transition-colors hover:text-foreground"
-                  >
-                    <ShoppingCart className="size-4" aria-hidden="true" />
-                    Cart
-                    {totalItems > 0 && (
-                      <Badge variant="default" className="rounded-full">
-                        {totalItems}
-                      </Badge>
-                    )}
-                  </Link>
+                  <hr className="border-border" />
+                  {isAuthenticated ? (
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className="flex cursor-pointer items-center gap-2 text-base font-medium text-text-secondary transition-colors hover:text-foreground"
+                    >
+                      <LogOut className="size-4" />
+                      Log out
+                    </button>
+                  ) : (
+                    <Link
+                      href={ROUTES.login}
+                      onClick={closeSheet}
+                      className="flex items-center gap-2 text-base font-medium text-text-secondary transition-colors hover:text-foreground"
+                    >
+                      <User className="size-4" />
+                      Sign In
+                    </Link>
+                  )}
                 </div>
               </SheetContent>
             </Sheet>
