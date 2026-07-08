@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { CategoryBadge } from "@/components/shared/category-badge";
 import { PriceTag } from "@/components/shared/price-tag";
@@ -49,7 +50,10 @@ export function ProductCard({ product }: ProductCardProps) {
           <Button
             size="sm"
             className="h-8 gap-1.5 rounded-lg text-xs"
-            onClick={() => addItem(product)}
+            onClick={() => {
+              addItem(product);
+              toast.success(`${product.title.slice(0, 48)}… added to cart`);
+            }}
           >
             <ShoppingCart className="size-3.5" />
             Add to Cart

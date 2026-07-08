@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ShoppingBag, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { CartItemRow } from "@/components/shared/cart-item-row";
 import { CartSummary } from "@/components/features/cart-summary";
@@ -41,7 +42,10 @@ export function CartContent() {
             variant="ghost"
             size="sm"
             className="gap-1.5 text-text-secondary"
-            onClick={clearCart}
+            onClick={() => {
+              clearCart();
+              toast.success("Cart cleared");
+            }}
           >
             <Trash2 className="size-3.5" />
             Clear Cart

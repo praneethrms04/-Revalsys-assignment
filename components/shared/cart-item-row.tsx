@@ -4,6 +4,7 @@ import { memo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { QuantitySelector } from "@/components/shared/quantity-selector";
 import { CategoryBadge } from "@/components/shared/category-badge";
@@ -24,7 +25,10 @@ export const CartItemRow = memo(function CartItemRow({ item }: CartItemRowProps)
     [item.product.id, updateQuantity]
   );
   const handleRemove = useCallback(
-    () => removeItem(item.product.id),
+    () => {
+      removeItem(item.product.id);
+      toast.success(`${item.product.title.slice(0, 48)}… removed from cart`);
+    },
     [item.product.id, removeItem]
   );
 

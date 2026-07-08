@@ -122,6 +122,7 @@ export function ProductDetails({ productId, initialProduct }: ProductDetailsProp
   const handleAddToCart = useCallback(() => {
     if (!product) return;
     addItem(product, quantity);
+    toast.success(`${product.title.slice(0, 48)}… added to cart`);
   }, [product, quantity, addItem]);
 
   return (
