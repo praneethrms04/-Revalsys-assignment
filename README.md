@@ -1,5 +1,7 @@
 # Voltura — Premium Electronics Showcase
 
+Prompts : Github : https://github.com/praneethrms04/revalsys-assignment-promts
+
 A modern e-commerce product showcase built with Next.js 16, TypeScript, and Tailwind CSS. Voltura demonstrates a production-grade architecture for browsing, filtering, and managing a product catalog with a simulated shopping cart and authentication flow.
 
 ---
